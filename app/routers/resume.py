@@ -15,18 +15,18 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 async def upload_resume(file: UploadFile = File(...), db: Session = Depends(get_db)):
     file_path = os.path.join(UPLOAD_DIR, file.filename)
 
-    # Save the uploaded file
+    # Save file locally
     with open(file_path, "wb") as f:
         f.write(await file.read())
 
-    # Extract text & info
+    # Extract resume info
     text = extract_text_from_pdf(file_path)
     info = extract_basic_info(text)
 
-    # Analyze with Gemini
+    # Analyze given resume with Gemini
     ai_result = analyze_resume_with_ai(text)
 
-    # Save to database
+    # Save to DB
     new_resume = models.Resume(
         file_name=file.filename,
         name=info.get("name"),
