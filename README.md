@@ -19,8 +19,7 @@ This project uses **FastAPI**, **PostgreSQL**, and **Gemini AI** to extract key 
 Here’s how the AI Resume Parser looks in action:
 
 ![Resume Parser Screenshot](frontend/assets/screenshot.png)
-<!-- Add more screenshots below if needed -->
-<!-- ![Another Screenshot](frontend/assets/another_screenshot.png) -->
+
 
 ---
 

@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Resume Parser</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Resume Parser 💼</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>AI Resume Parser 💼</h1>
+  <header>
+    <h1>🤖 AI Resume Parser</h1>
+    <p class="subtitle">Upload your resume and get instant feedback powered by Google Gemini AI</p>
+  </header>
 
+  <!-- Navigation Tabs -->
   <div class="tabs">
-    <button class="tab-button active" onclick="showTab('upload')">Upload Resume</button>
-    <button class="tab-button" onclick="showTab('history')">Past Uploads</button>
+    <button class="tab-button active" onclick="showTab('upload')">📤 Upload Resume</button>
+    <button class="tab-button" onclick="showTab('history')">📜 Past Uploads</button>
   </div>
 
+  <!-- Upload Section -->
   <div id="upload" class="tab-content active">
-    <h2>Upload New Resume</h2>
+    <h2>Upload a New Resume</h2>
     <form id="uploadForm">
-      <input type="file" id="resumeFile" accept=".pdf" required>
-      <button type="submit">Upload</button>
+      <input type="file" id="resumeFile" accept=".pdf" required />
+      <button type="submit">Analyze Resume</button>
     </form>
-    <div id="result"></div>
+    <div id="result" class="result-box"></div>
   </div>
 
+  <!-- History Section -->
   <div id="history" class="tab-content">
-    <h2>Uploaded Resumes</h2>
+    <h2>Previously Uploaded Resumes</h2>
     <table id="resumeTable">
       <thead>
         <tr>
@@ -38,6 +44,10 @@
       <tbody></tbody>
     </table>
   </div>
+
+  <footer>
+    <p>⚡ Powered by FastAPI + Google Gemini AI</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>

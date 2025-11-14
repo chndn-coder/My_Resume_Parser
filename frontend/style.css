@@ -1,19 +1,30 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f7f9fc;
+  color: #333;
   margin: 0;
   padding: 20px;
 }
 
-h1 {
+header {
   text-align: center;
-  color: #333;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-size: 2.2em;
+  color: #0066cc;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 1em;
 }
 
 .tabs {
   display: flex;
   justify-content: center;
-  margin: 20px 0;
+  margin-bottom: 20px;
 }
 
 .tab-button {
@@ -22,8 +33,14 @@ h1 {
   border: none;
   padding: 10px 20px;
   margin: 0 5px;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.tab-button:hover {
+  background: #005fcc;
 }
 
 .tab-button.active {
@@ -35,11 +52,54 @@ h1 {
   background: white;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .tab-content.active {
   display: block;
+}
+
+#uploadForm {
+  margin-bottom: 20px;
+}
+
+input[type="file"] {
+  padding: 8px;
+}
+
+button[type="submit"] {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background: #218838;
+}
+
+.result-box {
+  margin-top: 20px;
+}
+
+.result-card {
+  background: #f1f9ff;
+  border-left: 5px solid #007bff;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.success {
+  color: green;
+  font-weight: bold;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
 }
 
 table {
@@ -48,11 +108,19 @@ table {
   margin-top: 20px;
 }
 
-table, th, td {
+th, td {
+  padding: 10px;
   border: 1px solid #ddd;
 }
 
-th, td {
-  padding: 10px;
-  text-align: left;
+th {
+  background-color: #007bff;
+  color: white;
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.9em;
+  color: #777;
 }

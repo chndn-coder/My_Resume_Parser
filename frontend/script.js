@@ -15,10 +15,10 @@ function showTab(tabId) {
 // Handle resume upload
 document.getElementById('uploadForm').addEventListener('submit', async (e) => {
   e.preventDefault();
-
+  
   const fileInput = document.getElementById('resumeFile');
   if (!fileInput.files[0]) {
-    alert("Please select a resume file first!");
+    alert("⚠️ Please select a resume file first!");
     return;
   }
 
@@ -26,7 +26,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
   formData.append('file', fileInput.files[0]);
 
   const resultDiv = document.getElementById('result');
-  resultDiv.innerHTML = "<p>📤 Uploading and analyzing resume... please wait ⏳</p>";
+  resultDiv.innerHTML = "<p>⏳ Uploading & analyzing resume... please wait.</p>";
 
   try {
     const response = await fetch(`${API_BASE}/upload`, {
@@ -35,31 +35,32 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
     });
 
     const data = await response.json();
-    console.log("Response Data:", data);
+    console.log("📩 Server Response:", data);
 
     if (data && data.data) {
       resultDiv.innerHTML = `
-        <h3>Upload Result</h3>
-        <p><strong>Name:</strong> ${data.data.name || 'N/A'}</p>
-        <p><strong>Email:</strong> ${data.data.email || 'N/A'}</p>
-        <p><strong>Phone:</strong> ${data.data.phone || 'N/A'}</p>
-        <p><strong>Skills:</strong> ${data.data.core_skills || 'N/A'}</p>
-        <p><strong>⭐ Rating:</strong> ${data.data.resume_rating || 'N/A'}</p>
-        <p><strong>🧩 Improvement Areas:</strong><br>${data.data.improvement_areas || 'N/A'}</p>
-        <p><strong>🚀 Upskill Suggestions:</strong><br>${data.data.upskill_suggestions || 'N/A'}</p>
-        <p style="color:green;"><strong>✔ Resume analyzed and saved successfully!</strong></p>
+        <div class="result-card">
+          <h3>🧾 Resume Analysis Result</h3>
+          <p><strong>👤 Name:</strong> ${data.data.name || 'N/A'}</p>
+          <p><strong>📧 Email:</strong> ${data.data.email || 'N/A'}</p>
+          <p><strong>📞 Phone:</strong> ${data.data.phone || 'N/A'}</p>
+          <p><strong>🧠 Skills:</strong> ${data.data.core_skills || 'N/A'}</p>
+          <p><strong>⭐ Rating:</strong> ${data.data.resume_rating || 'N/A'}</p>
+          <p><strong>🧩 Improvement Areas:</strong><br>${data.data.improvement_areas || 'N/A'}</p>
+          <p><strong>🚀 Upskill Suggestions:</strong><br>${Array.isArray(data.data.upskill_suggestions) ? data.data.upskill_suggestions.join(', ') : data.data.upskill_suggestions}</p>
+          <p class="success">✔ Resume analyzed & saved successfully!</p>
+        </div>
       `;
     } else {
-      resultDiv.innerHTML = "<p style='color:red;'>❌ Server returned no data. Please try again.</p>";
+      resultDiv.innerHTML = "<p class='error'>❌ Server returned no data. Please try again.</p>";
     }
-
   } catch (error) {
-    console.error("Error:", error);
-    resultDiv.innerHTML = "<p style='color:red;'>❌ Failed to upload or analyze resume.</p>";
+    console.error("❌ Error:", error);
+    resultDiv.innerHTML = "<p class='error'>❌ Failed to upload or analyze resume.</p>";
   }
 });
 
-// Load saved resumes
+// Load all stored resumes
 async function loadResumes() {
   try {
     const response = await fetch(`${API_BASE}/all`);
@@ -72,10 +73,10 @@ async function loadResumes() {
       const row = `
         <tr>
           <td>${r.id}</td>
-          <td>${r.name || ''}</td>
-          <td>${r.email || ''}</td>
-          <td>${r.phone || ''}</td>
-          <td>${r.core_skills || ''}</td>
+          <td>${r.name || '-'}</td>
+          <td>${r.email || '-'}</td>
+          <td>${r.phone || '-'}</td>
+          <td>${r.core_skills || '-'}</td>
         </tr>
       `;
       tbody.innerHTML += row;
